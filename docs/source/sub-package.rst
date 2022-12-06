@@ -318,7 +318,7 @@ Optional parameter:
 
 * *force_positive*: If True, will exclude negative values when computing the Zscale
 
-.. figure:: single_image.png
+.. figure:: images/single_image.png
     
     Exemple of the *imager.plot.single_image()* function
 
@@ -333,7 +333,7 @@ Expect list (or one) filenames for a level 2 MIRI imager FITS file, will display
     fig = MIRI_flag_images(filenames, flag=2, title_keyword="NGROUPS")
     fig2 = MIRI_flag_images(filenames, flag=2, titles=["file1", "file2"])
 
-.. figure:: saturation_images.png
+.. figure:: images/saturation_images.png
 
     Exemple of the *imager.plot.MIRI_flag_images()* function
 
@@ -368,7 +368,7 @@ Optional:
 
     That you can do that later since the figure is returned by the function.
 
-.. figure:: saturation_analysis.png
+.. figure:: images/saturation_analysis.png
 
     Exemple of the *imager.plot.MIRI_saturation_frame()* function
 
@@ -382,7 +382,7 @@ This function need a ramp image. The subtelty is that you can't use the _uncal f
     miritools.plot.MIRI_ramp_flag(filename, flag=4)
 
 
-.. figure:: MIRI_ramp_flag.png
+.. figure:: images/MIRI_ramp_flag.png
 
     Exemple of the *plot.MIRI_ramp_flag()* function
 
@@ -396,7 +396,8 @@ Will display all integrations from a pixel in a single level 1b exposure.
                                 filename="all_ramps.svg", substract_first=True)
 
 
-.. figure:: pixel_ramps.png
+
+.. figure:: images/pixel_ramps.png
 
     Exemple of the *plot.pixel_ramps()* function
 
@@ -416,11 +417,11 @@ Another plot is created, for convenience, with a little explanation for each of 
     plt.show()
 
 
-.. figure:: flag_identifier_1.png
+.. figure:: images/flag_identifier_1.png
 
     Exemple of the *plot.flag_identifier()* function
 
-.. figure:: flag_identifier_2.png
+.. figure:: images/flag_identifier_2.png
 
     Exemple of the *plot.flag_identifier()* convenience plot
 
