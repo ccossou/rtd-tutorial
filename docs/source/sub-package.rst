@@ -220,14 +220,15 @@ Same as the function before, but return bits instead of flag value:
 
 extract_flag_image
 -----------------------
-From a full DQ image, will extract only the image of a given flag or combination of flags. Compared to <<get_separated_dq_array>>, this also work with flag=5 (i.e pixels that are flagged with 1 and 4 at the same time).
+From a full DQ image, will extract only the image of a given flag or combination of flags. Compared to :ref:`get_separated_dq_array`, this also work with flag=5 (i.e pixels that are flagged with 1 and 4 at the same time).
 
 ..  code-block:: python
 
     single_flag = extract_flag_image(mask, 2)
 
 
-[[get_separated_dq_array]]
+.. _get_separated_dq_array:
+
 get_separated_dq_array
 --------------------------
 From the original DQ array array(y, x) (that have all flags combined, i.e a  pixel with flag 1 and 4 will have the value 5), will return a cube of individual flag array array(y, x, 32)
@@ -238,7 +239,8 @@ From the original DQ array array(y, x) (that have all flags combined, i.e a  pix
 
     saturation_image = result[:, :, 1]  # because saturation flag: 2^1
 
-[[mask_statistics]]
+.. _mask_statistics:
+
 mask_statistic
 -----------------------
 Given a mask, will tell the different DQ status combination seen, and how many pixels are affected (a threshold can be defined to skip statuses with low number of pixels, by default < 3 pixels)
@@ -291,7 +293,8 @@ Quickly display an histogram for an input dataset, using optimised number of bin
 .Exemple of the *imager.plot.histogram()* function
 image::histogram.svg[]
 
-[[single_image]]
+.. _single_image:
+
 single_image
 -----------------------
 plot one image with ZScale
@@ -312,7 +315,8 @@ plot one image with ZScale
 .Exemple of the *imager.plot.single_image()* function
 image::single_image.svg[]
 
-[[MIRI_flag_images]]
+.. _MIRI_flag_images:
+
 MIRI_flag_images
 -----------------------
 Expect list (or one) filenames for a level 2 MIRI imager FITS file, will display the flag image for each file. (e.g. saturation is the flag DQ=2 ; Combined flags also work e.g. 7=4+2+1). The title can be constructed from a header keyword (using the title_keyword parameter), or be provided as a list (using the *titles* parameter, that expect one title per file)
@@ -325,7 +329,8 @@ Expect list (or one) filenames for a level 2 MIRI imager FITS file, will display
 .Exemple of the *imager.plot.MIRI_flag_images()* function
 image::saturation_images.svg[]
 
-[[MIRI_saturation_frame]]
+.. _MIRI_saturation_frame:
+
 MIRI_saturation_frame
 -------------------------
 Given one integration ramp image, return the frame number at which each pixel saturate (as an image).
@@ -407,7 +412,7 @@ image::flag_identifier_2.png[]
 read
 =======
 
-IMPORTANT: When reading multiple files, the filenames *must* be ordered from oldest to newest file. See <<list_ordered_files>>.
+IMPORTANT: When reading multiple files, the filenames *must* be ordered from oldest to newest file. See :ref:`list_ordered_files`.
 
 MIRI_ramps
 -----------------------
@@ -436,14 +441,15 @@ Read multiple MIRI datamodel integrations (_rateints) (given list of filenames)
 
 MIRI_mask_statistics
 -----------------------
-Given a FITS filename, return the mask statistic of that file (see <<mask_statistics>>)
+Given a FITS filename, return the mask statistic of that file (see :ref:`mask_statistics`)
 
 ..  code-block:: python
 
     read.MIRI_mask_statistics(filename)
 
 
-[[compare_headers]]
+.. _compare_headers:
+
 compare_headers
 -----------------------
 Read multiple FITS files and compare headers. In a first part, all keywords whose value is identical for all files are displayed. In a second part, all keywords with varying values are displayed as a nice table. Note that a list of excluded keywords from part II exist by default, and you can overwrite it
@@ -494,7 +500,8 @@ For a FITS filename, return the start time of the exposure as a time object
 
     time = get_exp_time(metadata)
 
-[[mast_reorder]]
+.. _mast_reorder:
+
 reorder_miri_input_folder
 -----------------------------
 (Introduced in v3.10.0)
@@ -525,7 +532,8 @@ Given a pattern (using glob) will retrieve a list of FITS filenames, return an e
     filenames = list_files("simulations/*_cal.fits")
 
 
-[[list_ordered_files]]
+.. _list_ordered_files:
+
 list_ordered_files
 -----------------------
 Given a pattern (using glob) will retrieve a list of FITS filenames, then order them from oldest (first) to newest (last)
