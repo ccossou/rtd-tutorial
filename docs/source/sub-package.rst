@@ -1,41 +1,6 @@
-Miritools Documentation
+Sub-package
 ===========================
-
-Introduction
-=============
-The "miritools" package contains convenience functions usefull to display or characterize MIRI data on board JWST. Some are more generic and could be usefull in general, but all of them have been created with MIRI in mind in some way or another.
-
-Miritools start at v4.0.0. This is for historical reasons because it is based on the miricap package and I kept the version number for convenience.
-
-
-How to install
-------------------
-The latest version of this software can be retrieved from the repository hosted at:
-https://github.com/ccossou/miritools
-
-This package is a simple Python module, and all default commands
-works, such as:
-
-..  code-block:: console
-    pip install miritools
-
-How to use
------------------
-* First import the package:
-
-..  code-block:: python
-
-    import miritools
-    # or
-    from miritools import mask, read, plot, flux  #...
-
-* To get help on a given function, either look at the documentation or use the built-in *help* function:
-
-..  code-block:: python
-
-    from miritools import plot
-    help(plot.single_image)
-
+.. sectnum::
 
 coord
 ===========
@@ -85,6 +50,7 @@ flux
 flux2mag
 -----------------------
 convert flux in mJy into magnitude to the request band assuming this flux correspond to the wref of that band
+
 ..  code-block:: python
 
     mag = flux2mag(flux, band="V", system="Johnson")
@@ -219,7 +185,9 @@ Force some pixel DQ as visible (and exclude them from the mask). Combined DQ are
 
     output_mask = change_mask(input_mask, exclude_from_mask=[2])
 
-NOTE: If a pixel had multiple statuses (e.g 1 and 4) and you remove the status *1* from the mask, that pixel will still be masked because status *4* is still here.
+.. note::
+
+    If a pixel had multiple statuses (e.g 1 and 4) and you remove the status *1* from the mask, that pixel will still be masked because status *4* is still here.
 
 combine_masks
 -----------------------
@@ -383,7 +351,10 @@ Optional:
 * *sat_limit*: DN count at which the pixel is considered saturated. By default 62000
 * *filename*: If given, will save the figure to a file.
 +
-NOTE: that you can do that later since the figure is returned by the function.
+
+.. note::
+
+    That you can do that later since the figure is returned by the function.
 
 .Exemple of the *imager.plot.MIRI_saturation_frame()* function
 image::saturation_analysis.svg[]
