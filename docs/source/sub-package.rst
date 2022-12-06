@@ -359,7 +359,6 @@ Optional:
 * *frame_to_plot*: Frame used in reference image (left). By default it's the last one
 * *sat_limit*: DN count at which the pixel is considered saturated. By default 62000
 * *filename*: If given, will save the figure to a file.
-+
 
 .. note::
 
