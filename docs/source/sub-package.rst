@@ -381,6 +381,7 @@ This function need a ramp image. The subtelty is that you can't use the _uncal f
     filename = "jw0xxxx006001_03101_00001-seg000_mirimage_ramp.fits"
     miritools.plot.MIRI_ramp_flag(filename, flag=4)
 
+
 .. figure:: MIRI_ramp_flag.png
 
     Exemple of the *plot.MIRI_ramp_flag()* function
