@@ -274,8 +274,8 @@ For each observation in this example. a tuple of 2 lists (dx, dy) is provided
     fig = miritools.plot.compare_dithers(dithers, labels=labels)
 
 
-image:: compare_dithers.svg
-.. image:: compare_dithers.svg
+
+.. figure:: images/compare_dithers.png
 
     Exemple of the *plot.compare_dithers()* function (not representative of the source code example, but gives a better idea of a real example).
 
@@ -293,8 +293,10 @@ Quickly display an histogram for an input dataset, using optimised number of bin
     fig = miritools.plot.histogram(data, xlabel="Random gaussian")
     # fig2 = histogram(data, xlabel="My data", title="My title")
 
-.Exemple of the *imager.plot.histogram()* function
-image::histogram.svg[]
+
+.. figure:: images/histogram.png
+
+    Exemple of the *imager.plot.histogram()* function
 
 .. _single_image:
 
@@ -316,8 +318,9 @@ Optional parameter:
 
 * *force_positive*: If True, will exclude negative values when computing the Zscale
 
-.Exemple of the *imager.plot.single_image()* function
-image::single_image.svg[]
+.. figure:: single_image.png
+    
+    Exemple of the *imager.plot.single_image()* function
 
 .. _MIRI_flag_images:
 
@@ -330,8 +333,9 @@ Expect list (or one) filenames for a level 2 MIRI imager FITS file, will display
     fig = MIRI_flag_images(filenames, flag=2, title_keyword="NGROUPS")
     fig2 = MIRI_flag_images(filenames, flag=2, titles=["file1", "file2"])
 
-.Exemple of the *imager.plot.MIRI_flag_images()* function
-image::saturation_images.svg[]
+.. figure:: saturation_images.png
+
+    Exemple of the *imager.plot.MIRI_flag_images()* function
 
 .. _MIRI_saturation_frame:
 
@@ -364,8 +368,9 @@ Optional:
 
     That you can do that later since the figure is returned by the function.
 
-.Exemple of the *imager.plot.MIRI_saturation_frame()* function
-image::saturation_analysis.svg[]
+.. figure:: saturation_analysis.png
+
+    Exemple of the *imager.plot.MIRI_saturation_frame()* function
 
 MIRI_ramp_flag
 -----------------------
@@ -376,8 +381,9 @@ This function need a ramp image. The subtelty is that you can't use the _uncal f
     filename = "jw0xxxx006001_03101_00001-seg000_mirimage_ramp.fits"
     miritools.plot.MIRI_ramp_flag(filename, flag=4)
 
-.Exemple of the *plot.MIRI_ramp_flag()* function
-image::MIRI_ramp_flag.svg[]
+.. figure:: MIRI_ramp_flag.png
+
+    Exemple of the *plot.MIRI_ramp_flag()* function
 
 pixel_ramps
 -----------------------
@@ -388,8 +394,10 @@ Will display all integrations from a pixel in a single level 1b exposure.
     fig = miritools.plot.pixel_ramps(ramp_image=data, metadata=header, pixel=(639, 367),
                                 filename="all_ramps.svg", substract_first=True)
 
-.Exemple of the *plot.pixel_ramps()* function
-image::pixel_ramps.svg[]
+
+.. figure:: pixel_ramps.png
+
+    Exemple of the *plot.pixel_ramps()* function
 
 flag_identifier
 -----------------------
@@ -406,11 +414,14 @@ Another plot is created, for convenience, with a little explanation for each of 
     fig = miritools.plot.MIRI_flag_identifier(filename)
     plt.show()
 
-.Exemple of the *plot.flag_identifier()* function
-image::flag_identifier_1.png[]
 
-.Exemple of the *plot.flag_identifier()* convenience plot
-image::flag_identifier_2.png[]
+.. figure:: flag_identifier_1.png
+
+    Exemple of the *plot.flag_identifier()* function
+
+.. figure:: flag_identifier_2.png
+
+    Exemple of the *plot.flag_identifier()* convenience plot
 
 read
 =======
