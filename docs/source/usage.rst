@@ -208,7 +208,8 @@ Given an image and a *dy* and *dx* shift as float, will return the shifted image
 
 mask
 =========
-Data Quality for JWST images is described in the https://jwst-pipeline.readthedocs.io/en/latest/jwst/references_general/references_general.html#data-quality-flags[JWST pipeline documentation]
+Data Quality for JWST images is described in the
+`JWST pipeline documentation <https://jwst-pipeline.readthedocs.io/en/latest/jwst/references_general/references_general.html#data-quality-flags>`_
 
 change_mask
 -----------------------
