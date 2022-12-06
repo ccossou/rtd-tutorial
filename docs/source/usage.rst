@@ -40,16 +40,21 @@ coord
 ===========
 filter_shift
 ----------------
+
 return colrow shift to transform input filter coordinates into desired filter coordinates
+
 ..  code-block:: python
 
     input_filter = "F560W"
     desired_filter = "F1130W"
     filter_shift(input_filter, desired_filter)
 
+
 convert_filter_position
 -----------------------
+
 return colrow coordinates for the desired filter frame
+
 ..  code-block:: python
     input_filter = "F560W"
     desired_filter = "F1130W"
