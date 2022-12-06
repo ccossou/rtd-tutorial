@@ -74,6 +74,7 @@ convert ra from hours minutes seconds into decimal degrees
 dms2dd
 -----------------------
 convert dec from degree minutes seconds into decimal degrees.
+
 ..  code-block:: python
 
     >>> dms2dd(85, 10, 25.60)
@@ -92,6 +93,7 @@ convert flux in mJy into magnitude to the request band assuming this flux corres
 mag2flux
 -----------------------
 convert magnitude in a given band into flux in mJy (associated with the wref of that band)
+
 ..  code-block:: python
 
     flux, wref = mag2flux(mag, band="V", system="Johnson")
@@ -110,6 +112,7 @@ a list of other wavelengths and return an Astropy quantity.
 photon2jansky
 -----------------------
 Convert a flux in photon/m2/s/microns to Jy given the associated wavelength
+
 ..  code-block:: python
 
     wave = 10  # microns
@@ -138,6 +141,7 @@ imager
 abs_to_rel_pixels
 -----------------------
 Convert pixel coordinate in a sub-array into pixel coordinate in full array imager (given the coordinates and header)
+
 ..  code-block:: python
 
     rel_px = abs_to_rel_pixels(abs_px, header)
@@ -155,6 +159,7 @@ Resize the first image to match the size of the second. If no header is given, b
 find_array_intersect
 ------------------------
 Given a list of header, will return the coordinates of the box of pixel common to all images (i.e if FULL and Brightsky, will return brightsky coordinates)
+
 ..  code-block:: python
 
     ((xmin, xmax), (ymin, ymax)) = find_array_intersect([header_big, header_medium, header_small])
@@ -162,6 +167,7 @@ Given a list of header, will return the coordinates of the box of pixel common t
 radial_profile
 -----------------------
 Compute radial profile on an image, provided function name and center (y, x)
+
 ..  code-block:: python
 
     (y_center, x_center) = (256, 321)
@@ -195,6 +201,7 @@ Given an image, a center (y, x) and a radius, return a square box centered on *c
 subpixel_shift
 -----------------------
 Given an image and a *dy* and *dx* shift as float, will return the shifted image.
+
 ..  code-block:: python
 
     new_image = subpixel_shift(image, dy, dx)
@@ -235,6 +242,7 @@ Detail the DQ status of a pixel (because a single pixel can have multiple status
 decompose_to_bits
 -----------------------
 Same as the function before, but return bits instead of flag value:
+
 ..  code-block:: python
 
     result = mask.decompose_to_bits(768)
@@ -353,7 +361,8 @@ MIRI_saturation_frame
 -------------------------
 Given one integration ramp image, return the frame number at which each pixel saturate (as an image).
 
-.Default is:
+Default is:
+
 * figure is not saved to file but you can if you define the *filename* keyword
 * frame_to_plot is the last one (for the left image used as a reference)
 * sat_limit=62000 (at what point the pixel is considered saturated)
@@ -363,10 +372,12 @@ Given one integration ramp image, return the frame number at which each pixel sa
     # Normal use
     fig = miritools.plot.MIRI_saturation_frame(ramp_image, filename="saturation.svg")
 
-.Mandatory parameters:
+Mandatory parameters:
+
 * ramp_image as a numpy 3D cube (frame, y, x). Only one integration is accepted, but a cube with an extra 4-th dimension of only one value (1, frame, y, x) will also work.
 
-.Optional:
+Optional:
+
 * *frame_to_plot*: Frame used in reference image (left). By default it's the last one
 * *sat_limit*: DN count at which the pixel is considered saturated. By default 62000
 * *filename*: If given, will save the figure to a file.
@@ -615,6 +626,7 @@ write
 write_fits
 -----------------------
 Function to write an image to a FITS file with or without a header
+
 ..  code-block:: python
 
     write.write_fits(image, "output.fits", header=header)
@@ -632,6 +644,7 @@ Function to write an image to a FITS file and make it look like a JWST image (i.
 fits_thumbnail
 -----------------------
 retrieve data from extension 1 (by default) and write it with the same name as the fits file, with extension .jpg (with ZScale)
+
 ..  code-block:: python
 
     write.fits_thumbnail("output.fits")
@@ -641,6 +654,7 @@ retrieve data from extension 1 (by default) and write it with the same name as t
 write_thumbnail
 -----------------------
 write image to file, with ZScale applied
+
 ..  code-block:: python
 
     write.write_thumbnail(image, "output.jpg")
