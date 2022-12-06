@@ -98,7 +98,8 @@ Convert a flux in Jy to photon/m2/s/microns given the associated wavelength
 
 imager
 ==========
-.More complex functions not explained on purpose:
+More complex functions not explained on purpose:
+
 * *analyse_aperphot*
 * *analyse_box*
 * *get_pixel_coordinates*
@@ -309,7 +310,8 @@ plot one image with ZScale
     fig = miritools.plot.single_image(image, vlabel="Flux [mJy]", title="My plot")
     fig.savefig("single_image.svg")
 
-.Optional parameter:
+Optional parameter:
+
 * *force_positive*: If True, will exclude negative values when computing the Zscale
 
 .Exemple of the *imager.plot.single_image()* function
@@ -412,7 +414,8 @@ image::flag_identifier_2.png[]
 read
 =======
 
-IMPORTANT: When reading multiple files, the filenames *must* be ordered from oldest to newest file. See :ref:`list_ordered_files`.
+..important:
+    When reading multiple files, the filenames *must* be ordered from oldest to newest file. See :ref:`list_ordered_files`.
 
 MIRI_ramps
 -----------------------
