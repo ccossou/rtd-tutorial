@@ -140,7 +140,8 @@ Compute radial profile on an image, provided function name and center (y, x)
     (y_center, x_center) = (256, 321)
     r, std_profile = radial_profile(image, center=(y_center, x_center), func=np.nanstd)
 
-IMPORTANT: radius for each bin correspond to the average of the radius of ALL pixel within a bin, meaning the associated radius is not necessarily the center of the bin.
+.. important::
+    radius for each bin correspond to the average of the radius of ALL pixel within a bin, meaning the associated radius is not necessarily the center of the bin.
 
 radial_profiles
 -----------------------
@@ -153,7 +154,8 @@ Compute multiple radial profiles on an image, starting at center (y, x) given in
     # e.g. radial_data["r"], radial_data["mean"]
 
 
-IMPORTANT: radius for each bin correspond to the average of the radius of ALL pixel within a bin, meaning the associated radius is not necessarily the center of the bin.
+.. important::
+    radius for each bin correspond to the average of the radius of ALL pixel within a bin, meaning the associated radius is not necessarily the center of the bin.
 
 select_sub_image
 -----------------------
@@ -414,7 +416,7 @@ image::flag_identifier_2.png[]
 read
 =======
 
-..important:
+.. important::
     When reading multiple files, the filenames *must* be ordered from oldest to newest file. See :ref:`list_ordered_files`.
 
 MIRI_ramps
