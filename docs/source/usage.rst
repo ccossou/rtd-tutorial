@@ -15,7 +15,8 @@ https://github.com/ccossou/miritools
 
 This package is a simple Python module, and all default commands
 works, such as:
-..  code-block:: bash
+
+..  code-block:: console
     pip install miritools
 
 How to use
@@ -56,6 +57,7 @@ convert_filter_position
 return colrow coordinates for the desired filter frame
 
 ..  code-block:: python
+
     input_filter = "F560W"
     desired_filter = "F1130W"
     convert_filter_position((2.5, 4.6), input_filter, desired_filter)
@@ -65,6 +67,7 @@ hms2dd
 convert ra from hours minutes seconds into decimal degrees
 
 ..  code-block:: python
+
     >>> hms2dd(00, 44, 52.1946)
     11.2174775
 
@@ -72,6 +75,7 @@ dms2dd
 -----------------------
 convert dec from degree minutes seconds into decimal degrees.
 ..  code-block:: python
+
     >>> dms2dd(85, 10, 25.60)
     85.17377777777779
 
@@ -81,6 +85,7 @@ flux2mag
 -----------------------
 convert flux in mJy into magnitude to the request band assuming this flux correspond to the wref of that band
 ..  code-block:: python
+
     mag = flux2mag(flux, band="V", system="Johnson")
 
 
@@ -88,6 +93,7 @@ mag2flux
 -----------------------
 convert magnitude in a given band into flux in mJy (associated with the wref of that band)
 ..  code-block:: python
+
     flux, wref = mag2flux(mag, band="V", system="Johnson")
 
 extrapolate_flux
@@ -96,6 +102,7 @@ given a blackbody temperature, will extrapolate a flux (in mJy) at a given wavel
 a list of other wavelengths and return an Astropy quantity.
 
 ..  code-block:: python
+
     extr_flux = extrapolate_flux(2, 5.2, 10., 5000) # in_flux, in_wref, out_wave, temperature
     fluxes = extrapolate_flux(2, 5.2, [10, 20], 5000)
 
@@ -104,6 +111,7 @@ photon2jansky
 -----------------------
 Convert a flux in photon/m2/s/microns to Jy given the associated wavelength
 ..  code-block:: python
+
     wave = 10  # microns
     flux = 1509  # photons/m2/s/microns
     f_Jy = photon2jansky(flux, wave)
@@ -113,6 +121,7 @@ jansky2photon
 Convert a flux in Jy to photon/m2/s/microns given the associated wavelength
 
 ..  code-block:: python
+
     wave = 10  # microns
     flux = 1e-3  # Jy
     f_phot = jansky2photon(flux, wave)
@@ -130,6 +139,7 @@ abs_to_rel_pixels
 -----------------------
 Convert pixel coordinate in a sub-array into pixel coordinate in full array imager (given the coordinates and header)
 ..  code-block:: python
+
     rel_px = abs_to_rel_pixels(abs_px, header)
 
 
@@ -138,6 +148,7 @@ crop_image
 Resize the first image to match the size of the second. If no header is given, both image will be assumed to start at the lowerleftmost pixel. If headers are given, properties of subarray ill be used to get the box of the second image extracted from the first image.
 
 ..  code-block:: python
+
     cropped_im = crop_image(big_im, small_im, big_header, small_header)
 
 
@@ -145,12 +156,14 @@ find_array_intersect
 ------------------------
 Given a list of header, will return the coordinates of the box of pixel common to all images (i.e if FULL and Brightsky, will return brightsky coordinates)
 ..  code-block:: python
+
     ((xmin, xmax), (ymin, ymax)) = find_array_intersect([header_big, header_medium, header_small])
 
 radial_profile
 -----------------------
 Compute radial profile on an image, provided function name and center (y, x)
 ..  code-block:: python
+
     (y_center, x_center) = (256, 321)
     r, std_profile = radial_profile(image, center=(y_center, x_center), func=np.nanstd)
 
@@ -161,6 +174,7 @@ radial_profiles
 Compute multiple radial profiles on an image, starting at center (y, x) given in parameter (a default set of functions exist)
 
 ..  code-block:: python
+
     (y_center, x_center) = (256, 321)
     radial_data = radial_profiles(image, center=(y_center, x_center))
     # e.g. radial_data["r"], radial_data["mean"]
@@ -173,6 +187,7 @@ select_sub_image
 Given an image, a center (y, x) and a radius, return a square box centered on *center* with a size of *2 x radius+1*
 
 ..  code-block:: python
+
     sub_image = select_sub_image(big_im, center=(5, 6), radius=3)
     sub_image, (corner_y, corner_x) = select_sub_image(big_im, center=(5, 6), radius=3, corner=True)
 
@@ -181,6 +196,7 @@ subpixel_shift
 -----------------------
 Given an image and a *dy* and *dx* shift as float, will return the shifted image.
 ..  code-block:: python
+
     new_image = subpixel_shift(image, dy, dx)
 
 mask
@@ -192,6 +208,7 @@ change_mask
 Force some pixel DQ as visible (and exclude them from the mask). Combined DQ are allowed (value of 5 will consider only the pixel with DQ = 1 and DQ = 4)
 
 ..  code-block:: python
+
     output_mask = change_mask(input_mask, exclude_from_mask=[2])
 
 NOTE: If a pixel had multiple statuses (e.g 1 and 4) and you remove the status *1* from the mask, that pixel will still be masked because status *4* is still here.
@@ -201,6 +218,7 @@ combine_masks
 Merge multiple mask into one were a pixel is visible *only* if never masked in all individual masks.
 
 ..  code-block:: python
+
     combined = combine_masks([m1, m2, m3])
 
 
@@ -209,6 +227,7 @@ decompose_mask_status
 Detail the DQ status of a pixel (because a single pixel can have multiple statuses at once ; e.g. noisy and cosmic ray). A parameter can tell if this status comes from JPL or the official datamodel
 
 ..  code-block:: python
+
     result = mask.decompose_mask_status(768)
     >>> print(result)
     [256, 512]
@@ -217,6 +236,7 @@ decompose_to_bits
 -----------------------
 Same as the function before, but return bits instead of flag value:
 ..  code-block:: python
+
     result = mask.decompose_to_bits(768)
     >>> print(result)
     [8, 9] # 2^8, 2^9
@@ -226,6 +246,7 @@ extract_flag_image
 From a full DQ image, will extract only the image of a given flag or combination of flags. Compared to <<get_separated_dq_array>>, this also work with flag=5 (i.e pixels that are flagged with 1 and 4 at the same time).
 
 ..  code-block:: python
+
     single_flag = extract_flag_image(mask, 2)
 
 
@@ -235,6 +256,7 @@ get_separated_dq_array
 From the original DQ array array(y, x) (that have all flags combined, i.e a  pixel with flag 1 and 4 will have the value 5), will return a cube of individual flag array array(y, x, 32)
 
 ..  code-block:: python
+
     result = mask.get_separated_dq_array(dq_mask)
 
     saturation_image = result[:, :, 1]  # because saturation flag: 2^1
@@ -245,6 +267,7 @@ mask_statistic
 Given a mask, will tell the different DQ status combination seen, and how many pixels are affected (a threshold can be defined to skip statuses with low number of pixels, by default < 3 pixels)
 
 ..  code-block:: python
+
     print(mask_statistic(mask, min_pix=20))
 
 plot
@@ -258,6 +281,7 @@ The subtlety lies in the arrow on the line (this is harder to do than it looks i
 For each observation in this example. a tuple of 2 lists (dx, dy) is provided
 
 ..  code-block:: python
+
     dithers = [
     ((0.1, 0.2, 0.3, 0.4), (0.1, -0.1, 0.1, -0.1)),
     ((0.2, 0.4, 0.1, 0.3), (-0.1, 0.1, -0.1, 0.1))
@@ -278,6 +302,7 @@ histogram
 Quickly display an histogram for an input dataset, using optimised number of bins
 
 ..  code-block:: python
+
     import miritools
     import numpy as np
 
@@ -295,6 +320,7 @@ single_image
 plot one image with ZScale
 
 ..  code-block:: python
+
     import miritools
     import numpy as np
 
@@ -315,6 +341,7 @@ MIRI_flag_images
 Expect list (or one) filenames for a level 2 MIRI imager FITS file, will display the flag image for each file. (e.g. saturation is the flag DQ=2 ; Combined flags also work e.g. 7=4+2+1). The title can be constructed from a header keyword (using the title_keyword parameter), or be provided as a list (using the *titles* parameter, that expect one title per file)
 
 ..  code-block:: python
+
     fig = MIRI_flag_images(filenames, flag=2, title_keyword="NGROUPS")
     fig2 = MIRI_flag_images(filenames, flag=2, titles=["file1", "file2"])
 
@@ -332,6 +359,7 @@ Given one integration ramp image, return the frame number at which each pixel sa
 * sat_limit=62000 (at what point the pixel is considered saturated)
 
 ..  code-block:: python
+
     # Normal use
     fig = miritools.plot.MIRI_saturation_frame(ramp_image, filename="saturation.svg")
 
@@ -353,6 +381,7 @@ MIRI_ramp_flag
 This function need a ramp image. The subtelty is that you can't use the _uncal format that doesn't have any flag information in it. You have to you the _ramp image that is not saved by default but you can save it manually by reprocessing your data through level 1 with the correct options.
 
 ..  code-block:: python
+
     filename = "jw0xxxx006001_03101_00001-seg000_mirimage_ramp.fits"
     miritools.plot.MIRI_ramp_flag(filename, flag=4)
 
@@ -364,6 +393,7 @@ pixel_ramps
 Will display all integrations from a pixel in a single level 1b exposure.
 
 ..  code-block:: python
+
     fig = miritools.plot.pixel_ramps(ramp_image=data, metadata=header, pixel=(639, 367),
                                 filename="all_ramps.svg", substract_first=True)
 
@@ -379,6 +409,7 @@ Will display all individual flag mask of a single exposure (rate or cal) to iden
 Another plot is created, for convenience, with a little explanation for each of the individual flag so you don't have to look for it
 
 ..  code-block:: python
+
     filename = 'jw01052001001_02105_00001_mirimage_rate.fits'
 
     fig = miritools.plot.MIRI_flag_identifier(filename)
@@ -400,6 +431,7 @@ MIRI_ramps
 Read multiple MIRI ramps
 
 ..  code-block:: python
+
     images, metadatas = read.MIRI_ramps(filenames)
 
 MIRI_exposures
@@ -407,6 +439,7 @@ MIRI_exposures
 Read multiple MIRI datamodel exposures (_cal, or _rates) (given list of filenames)
 
 ..  code-block:: python
+
     time, images, metadatas = read.MIRI_exposures(filenames, exclude_from_mask=[4])
 
 MIRI_rateints
@@ -414,6 +447,7 @@ MIRI_rateints
 Read multiple MIRI datamodel integrations (_rateints) (given list of filenames)
 
 ..  code-block:: python
+
     time, images, metadatas = read.MIRI_rateints(filenames, exclude_from_mask=[4])
 
 
@@ -422,6 +456,7 @@ MIRI_mask_statistics
 Given a FITS filename, return the mask statistic of that file (see <<mask_statistics>>)
 
 ..  code-block:: python
+
     read.MIRI_mask_statistics(filename)
 
 
@@ -431,6 +466,7 @@ compare_headers
 Read multiple FITS files and compare headers. In a first part, all keywords whose value is identical for all files are displayed. In a second part, all keywords with varying values are displayed as a nice table. Note that a list of excluded keywords from part II exist by default, and you can overwrite it
 
 ..  code-block:: python
+
     print(read.compare_headers(filenames))
 
     print(read.compare_headers(filenames, exclude_keywords=["DATE-OBS"]))
@@ -472,6 +508,7 @@ get_exp_time
 For a FITS filename, return the start time of the exposure as a time object
 
 ..  code-block:: python
+
     time = get_exp_time(metadata)
 
 [[mast_reorder]]
@@ -486,6 +523,7 @@ A bash script is automatically created in the input folder *cancel_miri_reorder.
 If you want to test the function without moving anything, you can use the parameter `dryrun=True`.
 
 ..  code-block:: python
+
     import miritools
 
     miritools.utils.init_log()
@@ -500,6 +538,7 @@ list_files
 Given a pattern (using glob) will retrieve a list of FITS filenames, return an error if no files are found (just a wrapper of glob that check if there are matches)
 
 ..  code-block:: python
+
     filenames = list_files("simulations/*_cal.fits")
 
 
@@ -509,6 +548,7 @@ list_ordered_files
 Given a pattern (using glob) will retrieve a list of FITS filenames, then order them from oldest (first) to newest (last)
 
 ..  code-block:: python
+
     filenames = list_ordered_files("simulations/*_cal.fits")
     filenames = list_ordered_files("simulations/*.fits", jpl=True)
 
@@ -517,6 +557,7 @@ lambda_over_d_to_pixels
 Compute λ/d in pixel (valid for JWST MIRI Imager) for the given wavelength in microns
 
 ..  code-block:: python
+
     size = lambda_over_d_to_pixels(10)
 
 optimum_nbins
@@ -524,6 +565,7 @@ optimum_nbins
 Given a dataset destined to be used in a histogram, will return the apropriated number of bins necessary to view the dataset (assuming you display between min and max of that dataset)
 
 ..  code-block:: python
+
     nbins = optimum_nbins(dataset)
     fig, ax = plt.subplots()
     ax.hist(dataset, bins=nbins, density=True, histtype="step")
@@ -533,6 +575,7 @@ timer
 Decorator to time how long it takes for a function to run, then display it:
 
 ..  code-block:: python
+
     @miritools.utils.timer
     def my_func():
         continue
@@ -542,6 +585,7 @@ init_log
 Init logging package. The example below show how to use the extra_config, but a simple call without argument should be enough in most cases:
 
 ..  code-block:: python
+
     extra_config = {"loggers":
             {
 
@@ -572,6 +616,7 @@ write_fits
 -----------------------
 Function to write an image to a FITS file with or without a header
 ..  code-block:: python
+
     write.write_fits(image, "output.fits", header=header)
     write.write_fits(image, "output.fits.gz")
 
@@ -580,6 +625,7 @@ write_jwst_fits
 Function to write an image to a FITS file and make it look like a JWST image (i.e header in extension 0 and data in extension 1 called SCI)
 
 ..  code-block:: python
+
     write.write_jwst_fits(image, "output.fits", header=header)
     write.write__jwst_fits(image, "output.fits.gz")
 
@@ -587,6 +633,7 @@ fits_thumbnail
 -----------------------
 retrieve data from extension 1 (by default) and write it with the same name as the fits file, with extension .jpg (with ZScale)
 ..  code-block:: python
+
     write.fits_thumbnail("output.fits")
     write.fits_thumbnail("output.fits", fits_extension=0, ext="png")
     write.fits_thumbnail("output.fits", fits_extension=0, ext="png")
@@ -595,5 +642,6 @@ write_thumbnail
 -----------------------
 write image to file, with ZScale applied
 ..  code-block:: python
+
     write.write_thumbnail(image, "output.jpg")
 
